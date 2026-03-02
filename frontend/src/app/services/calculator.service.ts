@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CalculatorService {
 
-  private apiUrl = 'https://voice-calculator-zd4j.onrender.com/api/calculate';
+  private apiUrl = `${environment.apiUrl}/calculate`;
 
   constructor(private http: HttpClient) {}
 
