@@ -28,10 +28,9 @@
   {{ listening ? '🛑 Stop' : '🎤' }}
 </button>
 
-    <button class="calc-btn" (click)="calculate()">
-      {{ loading ? 'Calculating...' : 'Calculate' }}
-    </button>
-  </div>
+    <button (click)="calculate()" [disabled]="loading">
+  {{ loading ? 'Calculating...' : 'Calculate' }}
+</button>
 
   <!-- Scientific Grid -->
   <div class="scientific-grid">
@@ -73,9 +72,9 @@
   </div>
 
   <!-- Loading -->
-  <div class="status" *ngIf="loading">
-    Calculating...
-  </div>
+  <div class="spinner-container" *ngIf="loading">
+  <div class="spinner"></div>
+</div>
 
   <!-- Result -->
   <div class="result" *ngIf="result !== null">
