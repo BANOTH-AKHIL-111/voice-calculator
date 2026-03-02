@@ -1,0 +1,107 @@
+<div class="calculator-container" [class.dark]="darkMode">
+
+  <h1>Voice Calculator</h1>
+
+  <!-- Top Controls -->
+  <div class="top-controls">
+    <button class="theme-btn" (click)="toggleDarkMode()">
+      {{ darkMode ? '☀ Light Mode' : '🌙 Dark Mode' }}
+    </button>
+
+    <button class="mode-btn" (click)="toggleAngleMode()">
+      Mode: {{ angleMode }}
+    </button>
+  </div>
+
+  <!-- Input Section -->
+  <div class="input-section">
+    <input 
+      type="text"
+      [(ngModel)]="expression"
+      placeholder="Enter expression"
+    />
+
+    <button 
+  class="mic-btn" 
+  [class.listening]="listening"
+  (click)="startListening()">
+  {{ listening ? '🛑 Stop' : '🎤' }}
+</button>
+
+    <button class="calc-btn" (click)="calculate()">
+      {{ loading ? 'Calculating...' : 'Calculate' }}
+    </button>
+  </div>
+
+  <!-- Scientific Grid -->
+  <div class="scientific-grid">
+
+    <!-- Trigonometry -->
+    <button (click)="insert('sin(')">sin</button>
+    <button (click)="insert('cos(')">cos</button>
+    <button (click)="insert('tan(')">tan</button>
+    <button (click)="insert('log(')">log</button>
+
+    <!-- Advanced -->
+    <button (click)="insert('ln(')">ln</button>
+    <button (click)="insert('sqrt(')">√</button>
+    <button (click)="insert('pi')">π</button>
+    <button (click)="insert('e')">e</button>
+
+    <!-- Operators -->
+    <button (click)="insert('^')">^</button>
+    <button (click)="insert('(')">(</button>
+    <button (click)="insert(')')">)</button>
+    <button (click)="insert('%')">%</button>
+
+    <!-- Numbers -->
+    <button (click)="insert('9')">9</button>
+    <button (click)="insert('8')">8</button>
+    <button (click)="insert('7')">7</button>
+
+
+    <button (click)="insert('6')">6</button>
+    <button (click)="insert('5')">5</button>
+    <button (click)="insert('4')">4</button>
+
+    <button (click)="insert('3')">3</button>
+    <button (click)="insert('2')">2</button>
+    <button (click)="insert('1')">1</button>
+
+    <button (click)="insert('0')">0</button>
+
+  </div>
+
+  <!-- Loading -->
+  <div class="status" *ngIf="loading">
+    Calculating...
+  </div>
+
+  <!-- Result -->
+  <div class="result" *ngIf="result !== null">
+    Result: {{ result }}
+  </div>
+
+  <!-- History -->
+  <div class="history" *ngIf="history.length > 0">
+    <h3>History</h3>
+
+    <button class="clear-btn" (click)="clearHistory()">
+      Clear History
+    </button>
+
+    <div 
+      class="history-item"
+      *ngFor="let item of history"
+      (click)="expression = item.expression"
+    >
+      {{ item.expression }} = {{ item.result }}
+    </div>
+  </div>
+
+  <!-- Error -->
+  <div class="error" *ngIf="error">
+    {{ error }}
+  </div>
+
+</div>
