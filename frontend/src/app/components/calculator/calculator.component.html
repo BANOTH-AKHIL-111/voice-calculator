@@ -15,6 +15,7 @@
 
   <!-- Input Section -->
   <div class="input-section">
+
     <input 
       type="text"
       [(ngModel)]="expression"
@@ -22,15 +23,20 @@
     />
 
     <button 
-  class="mic-btn" 
-  [class.listening]="listening"
-  (click)="startListening()">
-  {{ listening ? '🛑 Stop' : '🎤' }}
-</button>
+      class="mic-btn" 
+      [class.listening]="listening"
+      (click)="startListening()">
+      {{ listening ? '🛑 Stop' : '🎤' }}
+    </button>
 
-    <button (click)="calculate()" [disabled]="loading">
-  {{ loading ? 'Calculating...' : 'Calculate' }}
-</button>
+    <button 
+      class="calculate-btn"
+      (click)="calculate()" 
+      [disabled]="loading">
+      {{ loading ? 'Calculating...' : 'Calculate' }}
+    </button>
+
+  </div> <!-- ✅ properly closed -->
 
   <!-- Scientific Grid -->
   <div class="scientific-grid">
@@ -58,7 +64,6 @@
     <button (click)="insert('8')">8</button>
     <button (click)="insert('7')">7</button>
 
-
     <button (click)="insert('6')">6</button>
     <button (click)="insert('5')">5</button>
     <button (click)="insert('4')">4</button>
@@ -71,10 +76,10 @@
 
   </div>
 
-  <!-- Loading -->
+  <!-- Loading Spinner -->
   <div class="spinner-container" *ngIf="loading">
-  <div class="spinner"></div>
-</div>
+    <div class="spinner"></div>
+  </div>
 
   <!-- Result -->
   <div class="result" *ngIf="result !== null">
