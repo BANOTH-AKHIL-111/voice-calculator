@@ -141,6 +141,17 @@ button.calc-btn:hover {
   backdrop-filter: blur(10px);
 }
 
+.result {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
 /* ================= ERROR ================= */
 
 .error {
@@ -231,29 +242,35 @@ button.calc-btn:hover {
 .ripple-btn {
   position: relative;
   overflow: hidden;
-  transition: transform 0.15s ease;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.ripple-btn:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .ripple-btn:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
 .ripple-btn::after {
   content: "";
   position: absolute;
-  width: 100px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.4);
+  width: 150%;
+  height: 150%;
+  top: 50%;
+  left: 50%;
+  background: rgba(255,255,255,0.35);
   border-radius: 50%;
-  transform: scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease, opacity 0.6s ease;
   opacity: 0;
-  pointer-events: none;
 }
 
 .ripple-btn:active::after {
-  transform: scale(3);
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  transition: transform 0.4s ease, opacity 0.6s ease;
 }
 
 .fade-in {
@@ -269,4 +286,34 @@ button.calc-btn:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.calculate-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.calculate-btn:hover {
+  background: #43a047;
+}
+
+.calculate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.calculator-container {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  min-height: 100vh;
+  animation: gradientShift 8s ease infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(1.1); }
 }
