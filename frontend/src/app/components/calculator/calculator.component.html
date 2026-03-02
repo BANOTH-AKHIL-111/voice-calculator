@@ -4,11 +4,11 @@
 
   <!-- Top Controls -->
   <div class="top-controls">
-    <button class="theme-btn" (click)="toggleDarkMode()">
+    <button class="theme-btn ripple-btn" (click)="toggleDarkMode()">
       {{ darkMode ? '☀ Light Mode' : '🌙 Dark Mode' }}
     </button>
 
-    <button class="mode-btn" (click)="toggleAngleMode()">
+    <button class="mode-btn ripple-btn" (click)="toggleAngleMode()">
       Mode: {{ angleMode }}
     </button>
   </div>
@@ -20,59 +20,60 @@
       type="text"
       [(ngModel)]="expression"
       placeholder="Enter expression"
+      (keydown.enter)="!loading && calculate()"
     />
 
     <button 
-      class="mic-btn" 
+      class="mic-btn ripple-btn" 
       [class.listening]="listening"
       (click)="startListening()">
       {{ listening ? '🛑 Stop' : '🎤' }}
     </button>
 
     <button 
-      class="calculate-btn"
+      class="calculate-btn ripple-btn"
       (click)="calculate()" 
       [disabled]="loading">
       {{ loading ? 'Calculating...' : 'Calculate' }}
     </button>
 
-  </div> <!-- ✅ properly closed -->
+  </div>
 
   <!-- Scientific Grid -->
   <div class="scientific-grid">
 
     <!-- Trigonometry -->
-    <button (click)="insert('sin(')">sin</button>
-    <button (click)="insert('cos(')">cos</button>
-    <button (click)="insert('tan(')">tan</button>
-    <button (click)="insert('log(')">log</button>
+    <button class="ripple-btn" (click)="insert('sin(')">sin</button>
+    <button class="ripple-btn" (click)="insert('cos(')">cos</button>
+    <button class="ripple-btn" (click)="insert('tan(')">tan</button>
+    <button class="ripple-btn" (click)="insert('log(')">log</button>
 
     <!-- Advanced -->
-    <button (click)="insert('ln(')">ln</button>
-    <button (click)="insert('sqrt(')">√</button>
-    <button (click)="insert('pi')">π</button>
-    <button (click)="insert('e')">e</button>
+    <button class="ripple-btn" (click)="insert('ln(')">ln</button>
+    <button class="ripple-btn" (click)="insert('sqrt(')">√</button>
+    <button class="ripple-btn" (click)="insert('pi')">π</button>
+    <button class="ripple-btn" (click)="insert('e')">e</button>
 
     <!-- Operators -->
-    <button (click)="insert('^')">^</button>
-    <button (click)="insert('(')">(</button>
-    <button (click)="insert(')')">)</button>
-    <button (click)="insert('%')">%</button>
+    <button class="ripple-btn" (click)="insert('^')">^</button>
+    <button class="ripple-btn" (click)="insert('(')">(</button>
+    <button class="ripple-btn" (click)="insert(')')">)</button>
+    <button class="ripple-btn" (click)="insert('%')">%</button>
 
     <!-- Numbers -->
-    <button (click)="insert('9')">9</button>
-    <button (click)="insert('8')">8</button>
-    <button (click)="insert('7')">7</button>
+    <button class="ripple-btn" (click)="insert('9')">9</button>
+    <button class="ripple-btn" (click)="insert('8')">8</button>
+    <button class="ripple-btn" (click)="insert('7')">7</button>
 
-    <button (click)="insert('6')">6</button>
-    <button (click)="insert('5')">5</button>
-    <button (click)="insert('4')">4</button>
+    <button class="ripple-btn" (click)="insert('6')">6</button>
+    <button class="ripple-btn" (click)="insert('5')">5</button>
+    <button class="ripple-btn" (click)="insert('4')">4</button>
 
-    <button (click)="insert('3')">3</button>
-    <button (click)="insert('2')">2</button>
-    <button (click)="insert('1')">1</button>
+    <button class="ripple-btn" (click)="insert('3')">3</button>
+    <button class="ripple-btn" (click)="insert('2')">2</button>
+    <button class="ripple-btn" (click)="insert('1')">1</button>
 
-    <button (click)="insert('0')">0</button>
+    <button class="ripple-btn" (click)="insert('0')">0</button>
 
   </div>
 
@@ -82,7 +83,7 @@
   </div>
 
   <!-- Result -->
-  <div class="result" *ngIf="result !== null">
+  <div class="result fade-in" *ngIf="result !== null">
     Result: {{ result }}
   </div>
 
@@ -90,12 +91,12 @@
   <div class="history" *ngIf="history.length > 0">
     <h3>History</h3>
 
-    <button class="clear-btn" (click)="clearHistory()">
+    <button class="clear-btn ripple-btn" (click)="clearHistory()">
       Clear History
     </button>
 
     <div 
-      class="history-item"
+      class="history-item ripple-btn"
       *ngFor="let item of history"
       (click)="expression = item.expression"
     >
@@ -104,7 +105,7 @@
   </div>
 
   <!-- Error -->
-  <div class="error" *ngIf="error">
+  <div class="error fade-in" *ngIf="error">
     {{ error }}
   </div>
 
